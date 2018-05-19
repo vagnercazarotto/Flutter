@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
 
-Widget helloRectangle(){
-  return Container(
-    color: Colors.greenAccent,
-  );
-}
-
-
 void main() {
   runApp(
     MaterialApp(
@@ -19,4 +12,21 @@ void main() {
       ),
     ),
   );
+}
+
+
+class helloRectangle extends StatelessWidget {
+  @override
+  Widget build(BuildContext context){
+    return new Center(
+      child: Container(
+        color: Colors.greenAccent,
+        height: 400.0,
+        width: 300.0,
+        child: new Center(
+            child: Text('Hello!',
+              style: TextStyle(fontSize: 40.0),)),
+      ),
+    );
+  }
 }
