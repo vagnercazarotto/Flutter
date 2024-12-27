@@ -61,9 +61,6 @@ class MyHomePage extends StatelessWidget {
                         horizontal: 15,
                         vertical: 10,
                       ),
-                      child: Text(
-                        tr.value.toString(),
-                      ),
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: Colors.black,
@@ -71,6 +68,14 @@ class MyHomePage extends StatelessWidget {
                         ),
                       ),
                       padding: EdgeInsets.all(10),
+                      child: Text(
+                        tr.value.toString(),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple,
+                        ),
+                      ),
                     ),
                     Column(
                       children: <Widget>[
