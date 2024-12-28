@@ -20,6 +20,10 @@ class ExpensesApp extends StatelessWidget {
 
 
 class MyHomePage extends StatelessWidget {
+
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
+
   final _transactions = [
     Transaction(
       id: 't1',
@@ -34,6 +38,9 @@ class MyHomePage extends StatelessWidget {
       date: DateTime.now(),
     ),
   ];
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -107,14 +114,20 @@ class MyHomePage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   TextField(
+                    controller: titleController,
                     decoration: InputDecoration(labelText: 'Título'),
                   ),
-                  TextField(decoration: InputDecoration(labelText: 'Valor')),
+                  TextField(
+                    controller: valueController,
+                      decoration: InputDecoration(labelText: 'Valor')),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       FloatingActionButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          print(valueController.text);
+                          print(titleController.text);
+                        },
                         child: Text("Nova Transação"),
                       ),
                     ],
