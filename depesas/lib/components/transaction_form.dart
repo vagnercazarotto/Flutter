@@ -10,6 +10,18 @@ class TransactionForm extends StatelessWidget {
 
   TransactionForm(this.onSubmit);
 
+  _submitForm() {
+    final title = titleController.text;
+    final value = double.tryParse(valueController.text) ?? 0;
+
+    if (title.isEmpty || value <= 0) {
+      return;
+    }
+
+    onSubmit(title, value);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -17,25 +29,35 @@ class TransactionForm extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
-          children: <Widget>[
+          children: [
             TextField(
               controller: titleController,
-              decoration: InputDecoration(labelText: 'Título'),
+              onSubmitted: (_) => _submitForm(),
+              decoration: const InputDecoration(
+                labelText: 'Título',
+              ),
             ),
             TextField(
-                controller: valueController,
-                decoration: InputDecoration(labelText: 'Valor')),
+              controller: valueController,
+              keyboardType:
+              const TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (_) => _submitForm(),
+              decoration: const InputDecoration(
+                labelText: 'Valor (R\$)',
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                FloatingActionButton(
-                  onPressed: () {
-                    final value = double.tryParse(valueController.text) ?? 0.0;
-                    final title = titleController.text;
-                    onSubmit(title, value);
-                  },
-                  child: Text("Nova Transação"),
-                ),
+              children: <Widget>[
+                TextButton(
+                  onPressed: _submitForm,
+                  child: const Text(
+                    'Nova Transação',
+                    style: TextStyle(
+                      color: Colors.purple,
+                    ),
+                  ),
+                )
               ],
             ),
           ],
